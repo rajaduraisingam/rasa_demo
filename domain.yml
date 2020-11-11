@@ -1,0 +1,132 @@
+version: "2.0"
+intents:
+- goodbye
+- greet
+- out_of_scope
+- affirm
+- inform
+- transfer_money:
+    use_entities:
+    - PERSON
+    - amount_of_money
+- thankyou
+- check_balance:
+    use_entities:
+    - credit_card
+- stop
+- human_handoff
+- deny
+- help
+- faq
+- bot_challenge
+- mood_great
+- mood_unhappy
+entities:
+- PERSON
+- amount_of_money
+- credit_card
+- currency
+slots:
+  PERSON:
+    type: text
+    influence_conversation: false
+  account_balance:
+    type: float
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  amount_of_money:
+    type: float
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  amount_transferred:
+    type: float
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  confirm:
+    type: bool
+    influence_conversation: false
+  credit_card:
+    type: text
+    influence_conversation: false
+  credit_card_balance:
+    type: float
+    influence_conversation: false
+    max_value: 1000000000.0
+    min_value: 0.0
+  currency:
+    type: text
+    influence_conversation: false
+  requested_slot:
+    type: any
+    influence_conversation: false
+responses:
+  utter_ask_back_to_transfer:
+  - text: Would you like to go back to transferring money now?
+  utter_ask_balance_form_credit_card:
+  - text: What is your credit card number
+  utter_ask_continue:
+  - text: Would you like to continue?
+  utter_ask_handoff:
+  - text: It looks like you want to be transferred to a human agent.
+  utter_ask_rephrase:
+  - text: I did not quite understand that. Can you rephrase?
+  utter_ask_transfer_form_PERSON:
+  - text: Who do you want to transfer money to?
+  utter_ask_transfer_form_amount_of_money:
+  - text: How much money do you want to transfer?
+  utter_ask_transfer_form_confirm:
+  - buttons:
+    - payload: /affirm
+      title: Yes
+    - payload: /deny
+      title: No, cancel the transaction
+    text: Would you like to transfer {currency}{amount_of_money} to {PERSON}?
+  utter_ask_whatelse:
+  - text: What else can I help you with?
+  utter_credit_card_balance:
+  - text: The current balance for your {credit_card} account is {currency}{amount_of_money}.
+  utter_default:
+  - text: Sorry, I did not get that. Could you rephrase?
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hi! I'm your Financial Assistant!
+  utter_handoff:
+  - text: Alright, I'll try to transfer you.
+  utter_help:
+  - text: "I can help you with your financial accounts. \nYou can ask me things like:\
+      \ \n- What's my account balance? \n- I need to transfer money"
+  utter_insufficient_funds:
+  - text: Sorry, you don't have enough money to do that!
+  utter_noworries:
+  - text: You're welcome :)
+  utter_ok:
+  - text: 👍
+  - text: ok
+  utter_transfer_cancelled:
+  - text: Transfer cancelled.
+  utter_transfer_complete:
+  - text: Successfully transferred {currency}{amount_of_money} to {PERSON}.
+  utter_unknown_recipient:
+  - text: Sorry, {PERSON} is not in your list of known recipients.
+  utter_iamabot:
+  - text: I am just a bot.
+forms:
+  balance_form:
+    credit_card:
+      - type: from_entity
+        entity: credit_card
+  transfer_form:
+    PERSON:
+     - type: from_entity
+       entity: PERSON
+    amount_of_money:
+     - type: from_entity
+       entity: amount_of_money
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+  

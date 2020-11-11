@@ -1,0 +1,24 @@
+language: en
+pipeline:
+  - name: WhitespaceTokenizer #Creates a token for every whitespace separated character sequence.
+  - name: RegexFeaturizer #Creates features for entity extraction and intent classification (vector representation of user message)
+  - name: LexicalSyntacticFeaturizer #Creates features for entity extraction (lexical and syntactic)
+  - name: CountVectorsFeaturizer #Creates features for intent classification and response selection (bag of words)
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier #multi-task architecture for intent classification and entity recognition. The architecture is based on a transformer which is shared for both tasks.
+    epochs: 100
+  - name: EntitySynonymMapper #If the training data contains defined synonyms, this component will make sure that detected entity values will be mapped to the same value
+  - name: ResponseSelector #build a response retrieval model to directly predict a bot response from a set of candidate responses.
+    epcohs: 100
+    retrieval_intent: faq
+
+policies:
+- name: FallbackPolicy
+  nlu_threshold: 0.75
+- name: AugmentedMemoizationPolicy
+- name: FormPolicy
+- name: MappingPolicy
+- name: RulePolicy
+
