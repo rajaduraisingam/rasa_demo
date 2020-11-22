@@ -11,9 +11,34 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-  
+
 - rule: respond to FAQs
   steps:
   - intent: faq
   - action: utter_faq
+  
+- rule: respond to chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
+
+- rule: Activate tranfer form
+  steps:
+  - intent: transfer_money
+  - action: transfer_form
+  - active_loop: transfer_form
+  
+- rule: Example of an unhappy path condition for transfer form
+  # Condition that form is active.
+  condition:
+  - active_loop: transfer_form
+  steps:
+  # This unhappy path handles the case of an intent `chitchat`.
+  - intent: chitchat
+  - action: utter_chitchat
+  # Return to form after handling the `chitchat` intent
+  - action: transfer_form
+  - active_loop: transfer_form
+  
+
   
