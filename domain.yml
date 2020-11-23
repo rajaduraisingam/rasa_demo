@@ -81,6 +81,9 @@ responses:
   utter_submit_balance_form:
   - text: The balance for your {card_number} is {account_balance}.
   
+  utter_transfer_completed:
+  - text: An amount of {currency}{amount_of_money} has been transferred to {person}.
+  
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
