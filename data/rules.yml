@@ -2,6 +2,12 @@ version: "2.0"
 
 rules:
 
+- rule: Say hi when the user says hi
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
@@ -21,24 +27,6 @@ rules:
   steps:
   - intent: chitchat
   - action: utter_chitchat
-
-- rule: Activate tranfer form
-  steps:
-  - intent: transfer_money
-  - action: transfer_form
-  - active_loop: transfer_form
-  
-- rule: Example of an unhappy path condition for transfer form
-  # Condition that form is active.
-  condition:
-  - active_loop: transfer_form
-  steps:
-  # This unhappy path handles the case of an intent `chitchat`.
-  - intent: chitchat
-  - action: utter_chitchat
-  # Return to form after handling the `chitchat` intent
-  - action: transfer_form
-  - active_loop: transfer_form
   
 
   

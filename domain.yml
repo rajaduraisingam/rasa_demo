@@ -16,10 +16,27 @@ intents:
       - amount_of_money
   - inform
   - chitchat
-
+  - help
+  - check_balance:
+      use_entities:
+      - card_number
+ 
+entities:
+  - person
+  - amount_of_money
+  - currency
+  - card_number
+      
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hey, how are you today?"
+  
+  utter_help:
+  - text: "I can help you with your financial accounts.
+        \nYou can ask me things like:
+        \n- I need to transfer money
+        \n- FAQs
+        \n- chitchat"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -58,6 +75,12 @@ responses:
   utter_chitchat/ask_weather:
   - text: "It's always bright and sunny in Dubai!"
   
+  utter_ask_balance_form_card_number:
+  - text: "What's your card number?"
+  
+  utter_submit_balance_form:
+  - text: The balance for your {card_number} is {account_balance}.
+  
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
@@ -74,6 +97,9 @@ slots:
   currency:
     type: text
     influence_conversation: false
+  card_number:
+    type: text
+    influence_conversation: false
 
 forms:
   transfer_form:
@@ -86,5 +112,6 @@ forms:
     currency:
       - type: from_entity
         entity: currency
+  balance_form:
 
   
