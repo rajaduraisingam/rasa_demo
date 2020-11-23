@@ -1,7 +1,7 @@
 ## greet
 * greet
- - utter_greet
- - utter_help
+   - utter_greet
+   - utter_help
 
 ## happy path
 * greet
@@ -48,11 +48,11 @@
  
  ## transfer money
  * transfer_money
-  - transfer_form
-  - form{"name" : "transfer_form"}
-  - form("name" : null)
+   - transfer_form
+   - form{"name" : "transfer_form"}
+   - form("name" : null)
 * affirm
-  - utter_goodbye
+   - utter_goodbye
  
 
   
