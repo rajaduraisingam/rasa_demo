@@ -1,11 +1,3 @@
-from typing import Any, Text, Dict, List, Union
-
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.forms import FormAction
-
-# generate random credit card numbers and associated balance (100 values)
-
 import random
 first_6=400000 # IIN For Banking Industry(6 digits)
 def luhn():
@@ -42,17 +34,23 @@ for i in range(0,100):
     
 import pandas as pd
 df = pd.DataFrame()
-df['credit_card_number'] = numbers
-df['balance'] = balance    
+df['card_number'] = numbers
+df['account_balance'] = balance
+
+from typing import Any, Text, Dict, List, Union
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormAction
 
 class balanceform(FormAction):
 
     def name(self):
-        return "balance_form"
+        return "balance_form" # define form name
         
     @staticmethod
     def required_slots(tracker: Tracker) -> List[Text]:
-         return["card_number"]
+         return['card_number'] # define slots
     
     def submit(
         self,
@@ -60,9 +58,12 @@ class balanceform(FormAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict]:
-
-        dispatcher.utter_message("Your account balance is")
-        return [df['balance'][0]]
-    
-
+        account_balance = df['account_balance'][df['card_number'] == tracker.get_slot('card_number')]
+        dispatcher.utter_message(template = 'utter_submit_balance_form', card_number = tracker.get_slot('card_number'),
+        account_balance = account_balance)
+        return []
+        
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
+     
+        return{"card_number" : [self.from_entity(entity = "card_number", intent = "check_balance")]}
     

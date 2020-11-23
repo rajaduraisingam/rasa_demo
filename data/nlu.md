@@ -12,7 +12,6 @@
 - how can you help me
 - what services do you provide
 - whats your function
-- how can you help me
 - what can you help me with
 
 ## intent:goodbye
@@ -27,6 +26,7 @@
 - of course
 - that sounds good
 - correct
+- ok
 
 ## intent:deny
 - no
@@ -121,11 +121,12 @@
 - Pay Percy $50
 - Pay $50 to Percy
 - pay Emma
-- i want to transfer $[100](amount_of_money) 
+- i want to transfer $[100](amount_of_money)
 - i want to transfer 100 [AED](currency) to my daughter
 - i want to transfer money please
 - i mean i want to transfer money
 - I need to pay a friend.
+- transfer my money
 
 ## intent:check_balance
 - i want to check my balance
@@ -135,9 +136,12 @@
 - could you tell me my balance
 - do i have any money in my account left
 - balance
-- tell me my balance 
+- tell me my balance
 - I want to make a request for checking my balance please
 - i need to know my balance please
+- can you check balance for  [4000007120499680](card_number)
+- tell me how much money i have, card number is [4000007121239680](card_number)
+- check my balance
 
 ## intent:chitchat/ask_name
 - What is your name?
@@ -150,4 +154,3 @@
 - Does it look sunny outside today?
 - Oh, do you mind checking the weather for me please?
 - I like sunny days in Dubai.
-

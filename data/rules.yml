@@ -28,5 +28,17 @@ rules:
   - intent: chitchat
   - action: utter_chitchat
   
+- rule: Activate balance form
+  steps:
+  - intent: check_balance
+  - action: balance_form
+  - active_loop: balance_form
+
+- rule: Activate transfer form
+  steps:
+  - intent: transfer_money
+  - action: transfer_form
+  - active_loop: transfer_form
+  
 
   

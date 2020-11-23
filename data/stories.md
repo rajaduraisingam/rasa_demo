@@ -38,25 +38,4 @@
 * bot_challenge
   - utter_iamabot
   
-  ## check balance
-* check_balance
-    - balance_form
-    - form{"name" : "balance_form"}
-    - form("name" : null)
-* affirm
-    - utter_goodbye
-    
-## transfer money
-* transfer_money
-   - transfer_form
-   - form{"name" : "transfer_form"}
-   - form("name" : null)
-   - utter_transfer_completed
-* affirm
-   - utter_goodbye 
-  
- 
-
- 
-
   
