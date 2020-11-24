@@ -10,7 +10,8 @@ domain.yml <-- the domain file, including bot response templates\
 config.yml <-- training configurations for the NLU pipeline and policy ensemble\
 tests <-- end-to-end test stories
 
-Things you can ask the bot
-Transfer your money
-FAQs
-chitchat
+Things you can ask the bot\
+- Check Balance\
+- Make a transaction\
+- FAQs\
+- chitchat\
