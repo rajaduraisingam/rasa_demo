@@ -54,7 +54,7 @@ responses:
   utter_greet:
   - text: Hey, how are you today?
   utter_help:
-  - text: "I can help you with your financial accounts. \nYou can ask me things like: \n- I need to transfer money \n- FAQs \n- chitchat"
+  - text: "I can help you with your financial accounts. \nYou can ask me things like: \n- Check balance \n- Make a transaction \n- FAQs \n- chitchat"
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -83,7 +83,7 @@ responses:
   utter_ask_balance_form_card_number:
   - text: What's your card number?
   utter_submit_balance_form:
-  - text: The balance for your {card_number} is {account_balance}.
+  - text: The balance for your {card_number} current account is {account_balance}.
   utter_transfer_completed:
   - text: An amount of {currency}{amount_of_money} has been transferred to {person}.
 actions:

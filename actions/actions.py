@@ -50,7 +50,11 @@ class balanceform(FormAction):
         
     @staticmethod
     def required_slots(tracker: Tracker) -> List[Text]:
-         return["card_number"] # define slots
+         return["card_number"] # define slots that are required
+         
+    def slot_mappings(self) -> Dict[Text, Any]:
+     
+        return{"card_number" : self.from_entity(entity = "card_number", intent = "check_balance")}
     
     def submit(
         self,
@@ -58,12 +62,11 @@ class balanceform(FormAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict]:
-        account_balance = df["account_balance"][df["card_number"] == tracker.get_slot("card_number")]
-        dispatcher.utter_message(template = "utter_submit_balance_form", card_number = tracker.get_slot("card_number"),
+        card_number = tracker.get_slot("card_number") #pull current value
+        account_balance = df["account_balance"][df["card_number"] == card_number]
+        dispatcher.utter_message(template = "utter_submit_balance_form", card_number = card_number ,
         account_balance = account_balance)
         return []
         
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
-     
-        return{"card_number" : [self.from_entity(entity = "card_number", intent = "check_balance")]}
+    
     

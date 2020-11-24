@@ -154,3 +154,6 @@
 - Does it look sunny outside today?
 - Oh, do you mind checking the weather for me please?
 - I like sunny days in Dubai.
+
+## regex:card_number
+ -  ^4[0-9]{12}(?:[0-9]{3})?$
