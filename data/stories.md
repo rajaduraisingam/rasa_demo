@@ -51,6 +51,24 @@
    - transfer_form
    - form{"name" : "transfer_form"}
    - form{"name" : null}
+   - utter_transfer_completed
 * affirm
    - utter_goodbye
+   
+## greet, check balance and transfer money
+* utter_greet
+  - greet
+* check_balance
+  - balance_form
+  - form{"name" : "balance_form"}
+  - form{"name" : null}  
+* transfer_money
+  - transfer_form
+  - form{"name" : "transfer_form"}
+  - form{"name" : null}
+  - utter_transfer_completed
+* affirm
+  - utter_goodbye  
+  
+  
 
