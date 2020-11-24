@@ -56,8 +56,9 @@
    - utter_goodbye
    
 ## greet, check balance and transfer money
-* utter_greet
-  - greet
+* greet
+  - utter_greet
+  - utter_help
 * check_balance
   - balance_form
   - form{"name" : "balance_form"}

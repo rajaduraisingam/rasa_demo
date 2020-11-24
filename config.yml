@@ -36,3 +36,6 @@ policies:
   - name: MemoizationPolicy
   - name: TEDPolicy
   - name: RulePolicy
+  - name: FormPolicy
+  
+  

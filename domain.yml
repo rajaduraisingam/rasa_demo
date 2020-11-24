@@ -28,11 +28,6 @@ entities:
 - currency
 - person
 slots:
-  account_balance:
-    type: float
-    influence_conversation: false
-    max_value: 1000000000.0
-    min_value: 0.0
   amount_of_money:
     type: float
     influence_conversation: false
@@ -83,7 +78,7 @@ responses:
   utter_ask_balance_form_card_number:
   - text: What's your card number?
   utter_submit_balance_form:
-  - text: The balance for your {card_number} current account is {account_balance}.
+  - text: The balance for your {card_number} current account is 0.
   utter_transfer_completed:
   - text: An amount of {currency}{amount_of_money} has been transferred to {person}.
 actions:
