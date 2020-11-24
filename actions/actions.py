@@ -71,6 +71,7 @@ class balanceform(FormAction):
                    dispatcher.utter_message("Card number not found! Please try again.")
         else:
                    dispatcher.utter_message("Account balance :")
+                   dispatcher.utter_message(account_balance)
                    return[]
                     
 
