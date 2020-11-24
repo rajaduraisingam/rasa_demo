@@ -1,6 +1,6 @@
-# Banking example chatbot
+## Banking example chatbot
 
-## Run the bot
+### Run the bot
 
 Use `rasa train` to train a model.
 
@@ -21,13 +21,13 @@ You can also try out your bot locally using Rasa X by running
 ```
 rasa x
 ```
-Things you can ask the bot
+### Things you can ask the bot
 - Check Balance
 - Make a transaction
 - FAQs
 - chitchat
 
-Overview of the file structure\
+### Overview of the file structure
 data/nlu.md <-- Training data for NLU model\
 data/stories.md <-- Training data for dialogue model\
 actions/actions.py <-- custom actions\
