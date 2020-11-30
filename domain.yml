@@ -1,4 +1,3 @@
-version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
@@ -11,10 +10,8 @@ intents:
 - transfer_money:
     ignore_entities:
     - card_number
-- chitchat:
-    is_retrieval_intent: true
-- faq:
-    is_retrieval_intent: true
+- chitchat
+- faq
 - goodbye
 - deny
 - mood_great
@@ -22,6 +19,8 @@ intents:
 - bot_challenge
 - inform
 - help
+- hello_world
+- out_of_scope
 entities:
 - amount_of_money
 - card_number
@@ -49,10 +48,11 @@ responses:
   utter_greet:
   - text: Hey, how are you today?
   utter_help:
-  - text: "I can help you with your financial accounts. \nYou can ask me things like: \n- Check balance \n- Make a transaction \n- FAQs \n- chitchat"
+  - text: "I can help you with your financial accounts. \nYou can ask me things like:\
+      \ \n- Check balance \n- Make a transaction \n- FAQs \n- chitchat"
   utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
   utter_did_that_help:
   - text: Did that help you?
   utter_happy:
@@ -62,9 +62,14 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_faq/card_replacement_days:
-  - text: You should recieve your new card within two to three working days from the order date.
+  - text: You should recieve your new card within two to three working days from the
+      order date.
   utter_faq/card_activation_days:
   - text: Your card will be ready to use within 24 hours!
+  utter_faq/daily_transaction_limit:
+  - text: The daily transaction limit is 50,000 AED
+  utter_faq/transfer_charges:
+  - text: There are no charges associated to fund transfers.
   utter_ask_transfer_form_amount_of_money:
   - text: Could you please specify the amount of money you wish to transfer.
   utter_ask_transfer_form_person:
@@ -77,10 +82,12 @@ responses:
   - text: It's always bright and sunny in Dubai!
   utter_ask_balance_form_card_number:
   - text: What's your card number?
-  utter_submit_balance_form:
-  - text: The balance for your {card_number} current account is 0.
   utter_transfer_completed:
   - text: An amount of {currency}{amount_of_money} has been transferred to {person}.
+  utter_ask_continue:
+  - text: Do you want to continue?
+  utter_submit_balance_form:
+  - text: Your balance is None.
 actions:
 - utter_ask_balance_form_card_number
 - utter_ask_transfer_form_person
@@ -89,21 +96,17 @@ actions:
 - utter_goodbye
 - utter_greet
 - utter_help
-- utter_submit_balance_form
 - utter_transfer_completed
+- action_hello_world
 forms:
   transfer_form:
-    person:
-    - type: from_entity
-      entity: person
     amount_of_money:
-    - type: from_entity
-      entity: amount_of_money
+    - entity: amount_of_money
+      type: from_entity
     currency:
-    - type: from_entity
-      entity: currency
+    - entity: currency
+      type: from_entity
+    person:
+    - entity: person
+      type: from_entity
   balance_form:
-    card_number:
-    - type: from_entity
-      entity: card_number
-  
