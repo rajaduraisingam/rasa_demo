@@ -1,17 +1,20 @@
+version: "2.0"
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
 intents:
 - greet
-- check_balance:
-    use_entities:
-    - card_number
+- check_balance
+- faq:
+    is_retrieval_intent: true
+- chitchat:
+    is_retrieval_intent: true
 - affirm
 - transfer_money:
     ignore_entities:
     - card_number
-- chitchat
-- faq
 - goodbye
 - deny
 - mood_great
@@ -21,11 +24,13 @@ intents:
 - help
 - hello_world
 - out_of_scope
+
 entities:
 - amount_of_money
 - card_number
 - currency
 - person
+
 slots:
   amount_of_money:
     type: float
@@ -44,12 +49,12 @@ slots:
   requested_slot:
     type: text
     influence_conversation: false
+    
 responses:
   utter_greet:
   - text: Hey, how are you today?
   utter_help:
-  - text: "I can help you with your financial accounts. \nYou can ask me things like:\
-      \ \n- Check balance \n- Make a transaction \n- FAQs \n- chitchat"
+  - text: "I can help you with your financial accounts. \nYou can ask me things like: \n- Check balance \n- Make a transaction \n- FAQs \n- chitchat"
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
@@ -62,8 +67,7 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_faq/card_replacement_days:
-  - text: You should recieve your new card within two to three working days from the
-      order date.
+  - text: You should recieve your new card within two to three working days from the order date.
   utter_faq/card_activation_days:
   - text: Your card will be ready to use within 24 hours!
   utter_faq/daily_transaction_limit:
@@ -88,7 +92,12 @@ responses:
   - text: Do you want to continue?
   utter_submit_balance_form:
   - text: Your balance is None.
+
 actions:
+- action_hello_world
+- validate_balance_form
+- action_ask_card_number
+- action_balance_form
 - utter_ask_balance_form_card_number
 - utter_ask_transfer_form_person
 - utter_chitchat
@@ -97,7 +106,7 @@ actions:
 - utter_greet
 - utter_help
 - utter_transfer_completed
-- action_hello_world
+
 forms:
   transfer_form:
     amount_of_money:
@@ -110,3 +119,7 @@ forms:
     - entity: person
       type: from_entity
   balance_form:
+    card_number:
+    - entity: card_number
+      type: from_entity
+      intent: check_balance
